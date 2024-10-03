@@ -23,9 +23,9 @@ else
     echo "Netplan configuration backup already exists."
 fi
 
-# Remove the 'wifis' section from the netplan configuration
-echo "Removing the 'wifis' section from the netplan configuration..."
-sudo sed -i '/^\s*wifis:/,/^\s*[^ ]/d' "$CURRENT_NETPLAN_FILE"
+# Use yq to remove the 'wifis' section from the netplan configuration
+echo "Removing the 'wifis' section using yq..."
+sudo yq eval 'del(.network.wifis)' -i "$CURRENT_NETPLAN_FILE"
 
 # Apply netplan
 echo "Applying modified netplan configuration..."
