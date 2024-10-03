@@ -15,7 +15,7 @@ This repository contains scripts and instructions to configure a Raspberry Pi to
 
 ## Prerequisites
 
-- **Hardware:** Raspberry Pi with Wi-Fi capability (e.g., Raspberry Pi 3 Model B+ or Raspberry Pi 4).
+- **Hardware:** Raspberry Pi with Wi-Fi capability.
 - **Operating System:** Raspberry Pi OS or any Debian-based Linux distribution.
 - **Internet Connection:** Required for initial setup to install dependencies.
 
@@ -28,8 +28,8 @@ This repository contains scripts and instructions to configure a Raspberry Pi to
 Run the following commands:
 
 ```bash
-git clone https://github.com/your-username/raspberry-pi-ap-setup.git
-cd raspberry-pi-ap-setup
+git clone https://github.com/fly4future/robofly_ap_mode.git
+cd robofly_ap_mode
 ```
 ### 2. Install Dependencies
 
