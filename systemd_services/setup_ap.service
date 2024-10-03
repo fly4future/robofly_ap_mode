@@ -1,0 +1,11 @@
+[Unit]
+Description=Setup Access Point at boot
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/setup_ap.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
