@@ -23,14 +23,16 @@ else
     echo "Netplan configuration backup already exists."
 fi
 
-# Use yq to remove the 'wifis' section from the netplan configuration
+# Remove the 'wifis' section from the netplan configuration using yq
 echo "Removing the 'wifis' section using yq..."
-sudo yq eval 'del(.network.wifis)' -i "$CURRENT_NETPLAN_FILE"
+sudo yq e 'del(.network.wifis)' -i "$CURRENT_NETPLAN_FILE"
 
 # Apply netplan
 echo "Applying modified netplan configuration..."
 sudo netplan apply
 
+# Print the AP password for debugging
+echo "Starting Access Point with password: $AP_PASSWORD"
+
 # Start the access point using create_ap
-echo "Starting Access Point..."
-sudo create_ap --no-virt -n --freq-band "$FREQUENCY_BAND" --redirect-to-localhost wlan0 "${UAV_NAME}_WIFI" "$AP_PASSWORD"
+sudo create_ap -n --no-virt --freq-band "$FREQUENCY_BAND" --redirect-to-localhost wlan0 "${UAV_NAME}_WIFI" "$AP_PASSWORD"
