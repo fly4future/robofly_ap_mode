@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Change to the script's directory to ensure relative paths are correct
+cd "$(dirname "$0")"
+
 # Define the repository URL and the target directory
 REPO_URL="https://github.com/lakinduakash/linux-wifi-hotspot"
 TARGET_DIR="/tmp/linux-wifi-hotspot"
@@ -45,9 +48,10 @@ sudo chmod +x /usr/local/bin/setup_ap.sh /usr/local/bin/kill_ap.sh
 echo "Copying systemd service file to /etc/systemd/system..."
 sudo cp systemd_services/setup_ap.service /etc/systemd/system/
 
-# Enable the setup_ap service
+# Enable and start the setup_ap service
 echo "Enabling and starting the access point service..."
 sudo systemctl daemon-reload
 sudo systemctl enable setup_ap.service
+sudo systemctl start setup_ap.service
 
 echo "Installation and setup complete."
