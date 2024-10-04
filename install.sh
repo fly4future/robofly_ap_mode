@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Change to the script's directory to ensure relative paths are correct
-cd "$(dirname "$0")"
+# Store the current directory (where the script is executed)
+ORIGINAL_DIR="$(pwd)"
 
 # Define the repository URL and the target directory
 REPO_URL="https://github.com/lakinduakash/linux-wifi-hotspot"
@@ -31,6 +31,7 @@ fi
 
 git clone "$REPO_URL" "$TARGET_DIR"
 
+# Move into the target directory for installation
 cd "$TARGET_DIR"
 echo "Building and installing linux-wifi-hotspot CLI..."
 make
@@ -39,6 +40,9 @@ sudo make install-cli-only
 # Clean up the temporary installation directory
 echo "Cleaning up temporary files..."
 rm -rf "$TARGET_DIR"
+
+# Return to the original directory to ensure correct paths for copying configuration scripts
+cd "$ORIGINAL_DIR"
 
 # Copy configuration scripts and service files
 echo "Copying configuration scripts to /usr/local/bin..."
