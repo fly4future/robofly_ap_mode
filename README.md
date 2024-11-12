@@ -68,17 +68,26 @@ This script installs the following:
 
 Once the `install.sh` script returns successfully, everything should be configured properly. The AP will not start directly but will start on the next boot of the system. At all time when the AP is running you can call the `kill_ap.sh` script which will disable the AP and revert to the back up netplan configuration using the `01-netcfg.yaml.bak` file. Here are some commands that you can use with the AP: 
 
-- **Start Access Point Manually:**
+- **Start Access Point On Next Boot:**
 
   ```bash
-  sudo systemctl start setup_ap.service
+  sudo systemctl enable setup_ap.service
   ```
+This script will enable the service related to the AP and make it effective on next boot.
+
+- **Stop Access Point and Configure Network:**
+
+  ```bash
+  clean_ap_and_configure_netplan.sh
+  ```
+This script will stop the AP, clean up any running processes, and guide you through configuring a new netplan setup.
 
 - **Stop Access Point:**
 
   ```bash
   kill_ap.sh
   ```
+This script will stop the AP and revert the previous netplan configuration.
 
 - **Check Service Status:**
 

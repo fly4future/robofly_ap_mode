@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Check if NetworkManager is running, and exit if it is
+if systemctl is-active --quiet NetworkManager; then
+    echo "NetworkManager is currently active. Please disable NetworkManager to avoid conflicts and rerun this script."
+    exit 1
+fi
+
 # Get UAV_NAME from /etc/hosts associated with 127.0.1.1
 UAV_NAME=$(grep -w '127.0.1.1' /etc/hosts | awk '{print $2}')
 if [ -z "$UAV_NAME" ]; then

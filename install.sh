@@ -45,9 +45,9 @@ rm -rf "$TARGET_DIR"
 cd "$ORIGINAL_DIR"
 
 # Copy configuration scripts and service files
-echo "Copying configuration scripts to /usr/local/bin..."
-sudo cp setup_ap.sh kill_ap.sh /usr/local/bin/
-sudo chmod +x /usr/local/bin/setup_ap.sh /usr/local/bin/kill_ap.sh
+echo "Copying scripts to /usr/local/bin..."
+sudo cp setup_ap.sh kill_ap.sh clean_ap_and_configure_netplan.sh /usr/local/bin/
+sudo chmod +x /usr/local/bin/setup_ap.sh /usr/local/bin/kill_ap.sh /usr/local/bin/clean_ap_and_configure_netplan.sh
 
 echo "Copying systemd service file to /etc/systemd/system..."
 sudo cp systemd_services/setup_ap.service /etc/systemd/system/
@@ -58,3 +58,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable setup_ap.service
 
 echo "Installation and setup complete."
+echo "Utility scripts installed in /usr/local/bin:"
+echo "- setup_ap.sh: Script to set up the AP and back up the current netplan config."
+echo "- kill_ap.sh: Script to stop the AP and restore netplan config."
+echo "- clean_ap_and_configure_netplan.sh: Script to clean up the AP and generate a new netplan configuration."
