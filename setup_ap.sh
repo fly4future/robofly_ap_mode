@@ -13,7 +13,7 @@ if [ -z "$UAV_NAME" ]; then
 fi
 
 # Define the AP password
-AP_PASSWORD="${UAV_NAME}@F4F2024"
+AP_PASSWORD="drone@f4f"
 
 # Use the 5GHz band if supported
 FREQUENCY_BAND="5"
